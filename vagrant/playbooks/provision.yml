@@ -1,0 +1,12 @@
+---
+- hosts: webservers
+  tasks:
+    - name: Ensure locale is set to en_PH.UTF-8
+      become: true
+      locale_gen:
+        name: en_PH.UTF-8
+        state: present
+
+  roles:
+    - postgis
+    - airports

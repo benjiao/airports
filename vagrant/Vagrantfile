@@ -1,0 +1,34 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+
+  config.vm.define "default" do |default|
+    default.vm.box = "ubuntu/xenial64"
+    default.vm.hostname = "default"
+
+    # Default Application Port
+    default.vm.network "forwarded_port", guest: 8000, host: 8000
+
+    default.vm.synced_folder "../src", "/home/vagrant/airports/src", create: true
+
+    config.vm.provider "virtualbox" do |v|
+      v.memory = 2048
+      v.name = "airports"
+    end
+    
+    config.vm.provision "ansible_local" do |ansible|
+
+      ansible.extra_vars = "./vagrant_vars.yml"
+
+      ansible.groups = {
+        "webservers" => ["default"]
+      }
+
+      ansible.verbose = true   
+      ansible.install_mode = "pip"
+      # ansible.galaxy_role_file = 'requirements.yml'
+      ansible.playbook = "playbooks/provision.yml"
+    end
+  end
+end

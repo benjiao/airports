@@ -1,0 +1,13 @@
+---
+python_version: "3.7.1"
+
+app_name: "airports"
+app_user:
+  username: "vagrant"
+
+app_directory: "/home/{{ app_user.username }}"
+log_directory: '/var/log/{{ app_name }}'
+
+install_directory: "{{ app_directory }}/{{ app_name }}"
+src_directory: "{{ install_directory }}/src"
+venv_directory: "{{ app_directory }}/env"
