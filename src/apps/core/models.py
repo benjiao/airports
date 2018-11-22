@@ -15,6 +15,10 @@ class Airport(models.Model):
         spatial_index=True,
         dim=3)
 
+    evcent = models.FloatField(null=True)
+    pagerank = models.FloatField(null=True)
+    degree = models.FloatField(null=True)
+
     def __str__(self):
         return self.name
 
@@ -58,13 +62,13 @@ class Route(models.Model):
     source = models.ForeignKey(
         'core.Airport',
         on_delete=models.CASCADE,
-        related_name="source_routes",
+        related_name="routes_as_source",
         null=True)
 
     dest = models.ForeignKey(
         'core.Airport',
         on_delete=models.CASCADE,
-        related_name="dest_routes",
+        related_name="routes_as_dest",
         null=True)
 
     stops = models.IntegerField()

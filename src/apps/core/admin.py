@@ -7,7 +7,7 @@ class AirlineAdmin(admin.GeoModelAdmin):
 
 
 class AirportAdmin(admin.GeoModelAdmin):
-    list_display = ['icao', 'iata', 'name', 'city', 'country']
+    list_display = ['icao', 'iata', 'name', 'city', 'country', 'evcent', 'pagerank', 'degree']
 
 
 class EquipmentAdmin(admin.GeoModelAdmin):

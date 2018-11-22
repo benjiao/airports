@@ -10,6 +10,14 @@ from apps.core.models import Route
 from tqdm import tqdm
 
 
+def is_float(s):
+    try:
+        float(s)
+        return True
+    except ValueError:
+        return False
+
+
 class Command(BaseCommand):
     help = 'Updates airport data'
 
@@ -31,7 +39,10 @@ class Command(BaseCommand):
                     country=row['country'],
                     iata=row['iata'] if row['iata'].isalnum() else None,
                     icao=row['icao'] if row['icao'].isalnum() else None,
-                    location=Point(float(row['lon']), float(row['lat']), float(row['altitude'])))
+                    location=Point(float(row['lon']), float(row['lat']), float(row['altitude'])),
+                    evcent=row['evcent'] if is_float(row['evcent']) else None,
+                    pagerank=row['pagerank'] if is_float(row['pagerank']) else None,
+                    degree=row['degree_centrality'] if is_float(row['degree_centrality']) else None)
                 airport.save()
 
         print("Delete old airline data...")
