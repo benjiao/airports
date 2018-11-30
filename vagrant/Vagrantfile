@@ -13,7 +13,8 @@ Vagrant.configure("2") do |config|
     default.vm.synced_folder "../src", "/home/vagrant/airports/src", create: true
 
     config.vm.provider "virtualbox" do |v|
-      v.memory = 2048
+      v.memory = 4096
+      v.cpus = 2
       v.name = "airports"
     end
     
