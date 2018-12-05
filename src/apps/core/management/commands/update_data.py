@@ -42,7 +42,9 @@ class Command(BaseCommand):
                     location=Point(float(row['lon']), float(row['lat']), float(row['altitude'])),
                     evcent=row['evcent'] if is_float(row['evcent']) else None,
                     pagerank=row['pagerank'] if is_float(row['pagerank']) else None,
-                    degree=row['degree_centrality'] if is_float(row['degree_centrality']) else None)
+                    degree=row['degree_centrality'] if is_float(row['degree_centrality']) else None,
+                    betweenness=row['betweenness'] if is_float(row['betweenness']) else None,
+                    closeness=row['closeness'] if is_float(row['closeness']) else None)
                 airport.save()
 
         print("Delete old airline data...")

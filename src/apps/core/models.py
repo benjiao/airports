@@ -18,6 +18,8 @@ class Airport(models.Model):
     evcent = models.FloatField(null=True)
     pagerank = models.FloatField(null=True)
     degree = models.FloatField(null=True)
+    betweenness = models.FloatField(null=True)
+    closeness = models.FloatField(null=True)
 
     def __str__(self):
         return self.name
